@@ -1,0 +1,11 @@
+{
+  "name": "parking_lot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass --watch ./styles/styles.scss ./styles/styles.css"
+  },
+  "author": "",
+  "license": "ISC"
+}

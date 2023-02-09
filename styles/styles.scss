@@ -1,0 +1,44 @@
+$background-image: url(../assets/background.jpeg);
+$white-background: white;
+$red-color: red;
+$background-color: grey;
+
+html{
+    background: $background-color;
+    overflow-y: scroll;
+    overflow-wrap: normal;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+    background: $background-image center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding-block: 5rem;
+}
+
+section{
+    width: 70vw;
+    background: $white-background;
+    opacity: 0.8;
+    border-radius: 0.3rem;
+}
+
+.brand{
+    color: $red-color;
+}
+
+.accordion-button{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.accordion-button > img{
+    height: 5rem;
+    margin-inline: 2rem;
+}
