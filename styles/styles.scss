@@ -4,14 +4,14 @@ $red-color: red;
 $background-color: grey;
 
 html{
+    height: 100%;
+    width: 100%;
     background: $background-color;
     overflow-y: scroll;
     overflow-wrap: normal;
 }
 
 body{
-    height: 100%;
-    width: 100%;
     background: $background-image center;
     background-size: cover;
     display: flex;

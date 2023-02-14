@@ -1,11 +1,16 @@
 {
   "name": "parking_lot",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile:sass": "sass --watch ./styles/styles.scss ./styles/styles.css"
+    "compile:sass": "sass --watch ./styles/styles.scss ./styles/styles.css",
+    "test": "jasmine"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^4.5.0"
+  }
 }

@@ -33,7 +33,7 @@
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg">Registration No.</span>
                         <input type="text" id="park_reg_no" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-                        <button type="submit" onclick="park_car()" class="btn btn-outline-success">Park</button>
+                        <button id="park_btn" type="submit" class="btn btn-outline-success">Park</button>
                     </div>
                 </div>
               </div>
@@ -50,7 +50,7 @@
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg">Registration No.</span>
                         <input type="text" class="form-control" id="find_car" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-                        <a class="btn btn-outline-primary" onclick="find_car()">Find</a>
+                        <a class="btn btn-outline-primary" id="find_btn">Find</a>
                     </div>
                     <div class="input-group input-group-lg my-4 d-flex justify-content-center" id="find_car_result">
                     </div>
@@ -96,6 +96,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-    <script src="./controllers/index.js"></script>
+    <script type="module" src="./controllers/index.js"></script>
 </body>
 </html>
