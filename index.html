@@ -24,7 +24,7 @@
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-headingOne">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                  <img src="./assets/park_car.png" alt="park your car refernce image">
+                  <img src="./assets/parkCar.png" alt="park your car refernce image">
                     Park your car
                 </button>
               </h2>
@@ -32,8 +32,8 @@
                 <div class="accordion-body mx-5">
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg">Registration No.</span>
-                        <input type="text" id="park_reg_no" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-                        <button id="park_btn" type="submit" class="btn btn-outline-success">Park</button>
+                        <input type="text" maxlength="10" placeholder="AA12345678" id="parkRegNo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                        <button id="parkBtn" type="submit" class="btn btn-outline-success">Park</button>
                     </div>
                 </div>
               </div>
@@ -41,7 +41,7 @@
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                    <img src="./assets/find_car.png" alt="park your car refernce image">
+                    <img src="./assets/findCar.png" alt="park your car refernce image">
                     Find your car
                 </button>
               </h2>
@@ -49,24 +49,24 @@
                 <div class="accordion-body mx-5">
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg">Registration No.</span>
-                        <input type="text" class="form-control" id="find_car" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-                        <a class="btn btn-outline-primary" id="find_btn">Find</a>
+                        <input type="text" maxlength="10" placeholder="AA12345678" class="form-control" id="findCar" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                        <a class="btn btn-outline-primary" id="findBtn">Find</a>
                     </div>
-                    <div class="input-group input-group-lg my-4 d-flex justify-content-center" id="find_car_result">
+                    <div class="input-group input-group-lg my-4 d-flex justify-content-center" id="findCarResult">
                     </div>
                 </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                    <img src="./assets/recent_cars.png" alt="park your car refernce image">
+                <button id="parkList" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    <img src="./assets/recentCars.png" alt="park your car refernce image">
                     Show recently parked cars
                 </button>
               </h2>
               <div id="flush-collapseThree" class="accordion-collapse collapse mx-5" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body mx-5">
-                    <ol class="list-group list-group-numbered mx-5" id="recent_cars_list">
+                    <ol class="list-group list-group-numbered mx-5" id="recentCarsList">
 
                     </ol>
                 </div>
@@ -75,14 +75,14 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingFour">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                    <img src="./assets/parking_lot.png" alt="park your car refernce image">
+                    <img src="./assets/parkingLot.png" alt="park your car refernce image">
                     Parking lot status
                   </button>
                 </h2>
                 <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
                   <div class="accordion-body mx-5 d-flex justify-content-center">
                     <div>
-                        <table id="parking_status" class="table">
+                        <table id="parkingStatus" class="table">
                             <!-- dynamic data by index.js -->
                         </table>
                     </div>

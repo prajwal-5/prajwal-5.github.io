@@ -1,8 +1,8 @@
-class slot{
-    constructor(car_no, spot_no){
-        this.car_no = car_no;
-        this.spot_no = spot_no;
+class Slot{
+    constructor(carNo, spotNo){
+        this.carNo = carNo;
+        this.spotNo = spotNo;
     }
 }
 
-export default slot;
+export default Slot;
