@@ -1,4 +1,4 @@
-import Support from "./support.js";
+import Support from "./Support.js";
 
 class Car{
     constructor(regNo){

@@ -1,17 +1,20 @@
-import Crud from "./crud.js";
-import Message from "./messages.js";
+import ParkingOperations from "./ParkingOperations.js";
+import Message from "./Messages.js";
+let parkOps = new ParkingOperations();
 
-class UiUx{
+class ParkingLot{
+    constructor() {
+        this.slots = parkOps.getParkedCars();
+    }
+
     recentCars(){
-        let parkedCars = new Crud();
-        let slots = parkedCars.getParkedCars();
         let displayHtml = '';
-        for(let i = slots.length-1; i>=0 && i>slots.length-4; i--){
+        for(let i = this.slots.length-1; i>=0 && i>this.slots.length-4; i--){
             displayHtml += `<li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
-            <div class="fw-bold">${slots[i].carNo}</div>
+            <div class="fw-bold">${this.slots[i].carNo}</div>
             </div>
-            <span class="badge bg-primary rounded-pill">${slots[i].spotNo}</span>
+            <span class="badge bg-primary rounded-pill">${this.slots[i].spotNo}</span>
             </li>`;
         }
         document.getElementById("recentCarsList").innerHTML = displayHtml;
@@ -19,8 +22,6 @@ class UiUx{
     }
 
     parkingLotStatus(){
-        let parkedCars = new Crud();
-        let slots = parkedCars.getParkedCars();
         let displayHtml = `<thead>
         <tr>
         <th scope="col" class="text-center">Car No.</th>
@@ -29,10 +30,10 @@ class UiUx{
         </thead>
         <tbody>`;
         
-        for(let i=0; i<slots.length; i++){
+        for(let i=0; i<this.slots.length; i++){this.findCarw
             displayHtml += `<tr>
-            <td class="text-center px-5">${slots[i].carNo}</td>
-            <td class="text-center px-5">${slots[i].spotNo}</td>
+            <td class="text-center px-5">${this.slots[i].carNo}</td>
+            <td class="text-center px-5">${this.slots[i].spotNo}</td>
             </tr>`;
         }
         
@@ -42,35 +43,29 @@ class UiUx{
 
     parkCar(){
         let parkRegNo = document.getElementById("parkRegNo").value;
-        let park = new Crud();
         let msg = new Message();
-        switch (park.park(parkRegNo)){
-            case -1:
-                msg.displayMessage('Parking lot full', 'danger');
-                break;
-            case 0:
-                msg.displayMessage('This car is already parked!!', 'warning');
-                break;
-            case 1:
-                let start = new UiUx();
-                start.recentCars();    
-                start.parkingLotStatus();
-                msg.displayMessage('Car Parked!!', 'success');
-                document.getElementById("parkRegNo").value = "";
-                document.getElementById("parkList").click();
-                document.getElementById("parkList").scrollIntoView({behavior: 'smooth', block: 'start'});
-                break;
-            default:
-                msg.displayMessage('Inappropriate Registration Number! <br> Make sure it has <br> - First two characters as Alphabets <br> - last 8 characters as numbers <br> - Length of 10 characters', 'danger');
-                break;
+        let parked = parkOps.park(parkRegNo);
+        if(parked === -1){
+            msg.displayMessage('Parking lot full', 'danger');
+        } else if(parked === 0) {
+            msg.displayMessage('This car is already parked!!', 'warning');
+        } else if (parked === 1) {
+            let start = new ParkingLot();
+            start.recentCars();    
+            start.parkingLotStatus();
+            msg.displayMessage('Car Parked!!', 'success');
+            document.getElementById("parkRegNo").value = "";
+            document.getElementById("parkList").click();
+            document.getElementById("parkList").scrollIntoView({behavior: 'smooth', block: 'start'});
+        } else {
+            msg.displayMessage('Inappropriate Registration Number! <br> Make sure it has <br> - First two characters as Alphabets <br> - last 8 characters as numbers <br> - Length of 10 characters', 'danger');
         }
     }
 
     findCar(){
         let regNo = document.getElementById("findCar").value;
-        let find = new Crud();
         let displayHtml = '';
-        let car = find.isPresent(regNo);
+        let car = parkOps.isPresent(regNo);
         if(car){
             displayHtml = `<span class="input-group-text" id="inputGroup-sizing-lg">Registration No.</span>
             <input type="text" class="form-control" disabled aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value = "${car.carNo}">
@@ -84,8 +79,8 @@ class UiUx{
         }
         document.getElementById("findCarResult").innerHTML = displayHtml;
         if(car) document.getElementById('unparkCarBtn').onclick = () => {
-            if(find.unPark(car)){
-                let start = new UiUx();
+            if(parkOps.unPark(car)){
+                let start = new ParkingLot();
                 start.parkingLotStatus();   
                 start.recentCars();
                 let displayHtml = `<div class="alert alert-success" role="alert">
@@ -103,8 +98,8 @@ class UiUx{
     }
 }
 
-let uiux = new UiUx();
-document.getElementById('parkBtn').onclick = uiux.parkCar;
-document.getElementById('findBtn').onclick = uiux.findCar;
-uiux.recentCars();
-uiux.parkingLotStatus();
+let parking = new ParkingLot();
+document.getElementById('parkBtn').onclick = parking.parkCar;
+document.getElementById('findBtn').onclick = parking.findCar;
+parking.recentCars();
+parking.parkingLotStatus();
