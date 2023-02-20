@@ -1,4 +1,4 @@
-import Car from '../controllers/Car.js';
+import Car from '../controllers/Business/Car.js';
 
 describe('Checking car module', function(){
     it('Check for Car registration number larger than 10', function(){

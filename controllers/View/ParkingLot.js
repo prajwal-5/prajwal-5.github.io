@@ -1,13 +1,13 @@
-import ParkingOperations from "./ParkingOperations.js";
+import ParkingOperations from "../Business/ParkingOperations.js";
 import Message from "./Messages.js";
-let parkOps = new ParkingOperations();
 
 class ParkingLot{
     constructor() {
-        this.slots = parkOps.getParkedCars();
+        this.parkOps = new ParkingOperations();
+        this.slots = this.parkOps.getParkedCars();
     }
 
-    recentCars(){
+    renderRecentCars(){
         let displayHtml = '';
         for(let i = this.slots.length-1; i>=0 && i>this.slots.length-4; i--){
             displayHtml += `<li class="list-group-item d-flex justify-content-between align-items-start">
@@ -21,7 +21,7 @@ class ParkingLot{
         return;
     }
 
-    parkingLotStatus(){
+    renderParkedCars(){
         let displayHtml = `<thead>
         <tr>
         <th scope="col" class="text-center">Car No.</th>
@@ -42,30 +42,32 @@ class ParkingLot{
     }
 
     parkCar(){
+        let parkOps = new ParkingOperations();
+        document.getElementById("findCar").value = "";
         document.getElementById("findCarResult").innerHTML = '';
         let parkRegNo = document.getElementById("parkRegNo").value;
         let msg = new Message();
         let parked = parkOps.park(parkRegNo);
-        if(parked === -1){
+        if(parked === 'full'){
             msg.displayMessage('Parking lot full', 'danger');
-        } else if(parked === 0) {
+        } else if(parked === 'duplicate') {
             msg.displayMessage('This car is already parked!!', 'warning');
-        } else if (parked === 1) {
+        } else if (parked === 'parked') {
             let start = new ParkingLot();
-            start.recentCars();    
-            start.parkingLotStatus();
+            start.renderRecentCars();    
+            start.renderParkedCars();
             msg.displayMessage('Car Parked!!', 'success');
             document.getElementById("parkRegNo").value = "";
-            document.getElementById("parkList").click();
-            document.getElementById("parkList").scrollIntoView({behavior: 'smooth', block: 'start'});
         } else {
             msg.displayMessage('Inappropriate Registration Number! <br> Make sure it has <br> - First two characters as Alphabets <br> - last 8 characters as numbers <br> - Length of 10 characters', 'danger');
         }
     }
 
     findCar(){
+        document.getElementById("parkRegNo").value = "";
         let regNo = document.getElementById("findCar").value;
         let displayHtml = '';
+        let parkOps = new ParkingOperations();
         let car = parkOps.isPresent(regNo);
         if(car){
             displayHtml = `
@@ -86,8 +88,8 @@ class ParkingLot{
         if(car) document.getElementById('unparkCarBtn').onclick = () => {
             if(parkOps.unPark(car)){
                 let start = new ParkingLot();
-                start.parkingLotStatus();   
-                start.recentCars();
+                start.renderParkedCars();   
+                start.renderRecentCars();
                 let displayHtml = `<div class="alert alert-success" role="alert">
                 Car Unparked Successfully!!
                 </div>`
@@ -103,8 +105,4 @@ class ParkingLot{
     }
 }
 
-let parking = new ParkingLot();
-document.getElementById('parkBtn').onclick = parking.parkCar;
-document.getElementById('findBtn').onclick = parking.findCar;
-parking.recentCars();
-parking.parkingLotStatus();
+export default ParkingLot;

@@ -1,5 +1,5 @@
 import Car from "./Car.js";
-import slot from "./Slot.js";
+import Slot from "./Slot.js";
 
 class ParkingOperations{
     constructor(){
@@ -11,23 +11,24 @@ class ParkingOperations{
     }
 
     park(regNo){
+        let totalSlots = 10;
         let car = new Car(regNo);
-        if(this.slots.length > 9){
-            return -1;
-        }else if(this.slots.length < 10 && car.isValid()){
+        if(this.slots.length >= totalSlots){
+            return 'full';
+        }else if(this.slots.length < totalSlots && car.isValid()){
             let emptySlot = null;
-            for(let i=1; i<11; i++){
+            for(let i=1; i<=totalSlots; i++){
                 if(!this.slotHash[i]) {
                     emptySlot = i;
                     break;
                 }
             }
             if(this.slots.find(({carNo}) => {return carNo === car.regNo; })){
-                return 0;
+                return "duplicate";
             } else{
-                this.slots.push(new slot(car.regNo, emptySlot));
+                this.slots.push(new Slot(car.regNo, emptySlot));
                 localStorage.setItem("slots", JSON.stringify(this.slots));
-                return 1;
+                return "parked";
             }
         }
     }
