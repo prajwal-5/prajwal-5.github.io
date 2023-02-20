@@ -29,6 +29,10 @@ section {
   color: red;
 }
 
+.img-thumbnail {
+  height: 5rem;
+}
+
 .accordion-button {
   font-size: 1.5rem;
   font-weight: 600;

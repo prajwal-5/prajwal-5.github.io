@@ -42,6 +42,7 @@ class ParkingLot{
     }
 
     parkCar(){
+        document.getElementById("findCarResult").innerHTML = '';
         let parkRegNo = document.getElementById("parkRegNo").value;
         let msg = new Message();
         let parked = parkOps.park(parkRegNo);
@@ -67,11 +68,15 @@ class ParkingLot{
         let displayHtml = '';
         let car = parkOps.isPresent(regNo);
         if(car){
-            displayHtml = `<span class="input-group-text" id="inputGroup-sizing-lg">Registration No.</span>
-            <input type="text" class="form-control" disabled aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value = "${car.carNo}">
-            <span class="input-group-text" id="inputGroup-sizing-lg">Parking slot No.</span>
-            <input type="text" class="form-control" disabled aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value = "${car.spotNo}">
-            <button type="submit" class="btn btn-outline-danger" id="unparkCarBtn">Unpark</button>`;
+            displayHtml = `
+            <div class = "input-group">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Car No.</span>
+                <input type="text" class="form-control" disabled aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value = "${car.carNo}">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Slot No.</span>
+                <input type="text" class="form-control" disabled aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value = "${car.spotNo}">
+                <button type="submit" class="btn btn-outline-danger" id="unparkCarBtn">Unpark</button>
+            </div>
+            `;
         }else{
             displayHtml = `<div class="alert alert-danger" role="alert">
             Cannot find the car! Please enter correct details.
